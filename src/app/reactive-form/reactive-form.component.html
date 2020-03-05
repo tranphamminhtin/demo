@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <div class="row justify-content-center" style="margin-top: 40px;">
+        <div class="col-8">
+            <div class="jumbotron">
+                <h3>Reactive Form Custom Validation</h3>
+                <div>
+                    <!-- registration form starts here -->
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="usernameInput">User Name</label>
+                            <input formControlName="username" type="text" class="form-control" id="usernameInput"
+                                placeholder="Enter username"
+                                [ngClass]="{'is-invalid': form.get('username').touched && form.get('username').invalid}">
+                            <div *ngIf="form.get('username').touched && form.get('username').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('username').errors.required">Vui lòng nhập tên</div>
+                                <div *ngIf="form.get('username').errors.format">Tên của bạn không hợp lệ</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwordInput">Password</label>
+                            <input formControlName="password" type="password" class="form-control" id="passwordInput"
+                                placeholder="Enter Password"
+                                [ngClass]="{'is-invalid': form.get('password').touched && form.get('password').invalid}">
+                            <div *ngIf="form.get('password').touched && form.get('password').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('password').errors.required">Vui lòng nhập mật khẩu</div>
+                                <div *ngIf="form.get('password').errors.minlength">Mật khẩu quá ngắn</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password2Input">Confirm Password</label>
+                            <input formControlName="password2" type="password" class="form-control" id="password2Input"
+                                placeholder="Re-enter Password"
+                                [ngClass]="{'is-invalid': form.get('password2').touched && form.get('password2').invalid}">
+                            <div *ngIf="form.get('password2').touched && form.get('password2').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('password2').errors.required">Vui lòng xác nhận lại mật khẩu</div>
+                                <div *ngIf="form.get('password2').errors.match">Xác nhận lại không chính xác</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailinput">Email</label>
+                            <input formControlName="email" type="text" class="form-control" id="emailinput"
+                                placeholder="Enter Email"
+                                [ngClass]="{'is-invalid': form.get('email').touched && form.get('email').invalid}">
+                            <div *ngIf="form.get('email').touched && form.get('email').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('email').errors.required">Vui lòng nhập email</div>
+                                <div *ngIf="form.get('email').errors.format">Email không hợp lệ</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneinput">Number Phone</label>
+                            <input formControlName="numberphone" type="text" class="form-control" id="phoneinput"
+                                placeholder="Enter Number Phone" (keypress)="keyPress($event)"
+                                [ngClass]="{'is-invalid': form.get('numberphone').touched && form.get('numberphone').invalid}">
+                            <div *ngIf="form.get('numberphone').touched && form.get('numberphone').invalid" class="invalid-feedback">
+                                <div *ngIf="form.get('numberphone').errors.required">Vui lòng nhập số điện thoại</div>
+                                <div *ngIf="form.get('numberphone').errors.format">Số điện thoại không hợp lệ</div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
